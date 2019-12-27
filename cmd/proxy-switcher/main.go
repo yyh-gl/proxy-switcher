@@ -12,7 +12,7 @@ import (
 
 func main() {
 	app := &cli.App{
-		Name: "psw",
+		Name:  "psw",
 		Usage: "Proxy Switcher for CLI",
 		Action: func(c *cli.Context) error {
 			fmt.Println("Hello friend!")
@@ -20,7 +20,8 @@ func main() {
 		},
 	}
 
-	err := app.Run(os.Args); if err != nil {
+	err := app.Run(os.Args)
+	if err != nil {
 		log.Panic(xerrors.Errorf("CLI起動エラー: %w", err))
 	}
 }
