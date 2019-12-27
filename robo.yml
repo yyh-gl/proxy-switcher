@@ -1,0 +1,14 @@
+variables:
+  git:
+    commit: $(git rev-parse HEAD)
+    branch: $(git rev-parse --abbrev-ref HEAD)
+
+build:
+  summary: Mac用ビルド
+  command: GO111MODULE=on go build -ldflags "-X main.COMMIT={{.git.commit}} -X main.BRANCH={{.git.branch}}" -o ./cmd/proxy-switcher/bin/psw ./cmd/proxy-switcher/main.go
+
+run:
+  summary: 実行
+  command: |
+    robo build &&
+    ./cmd/proxy-switcher/bin/psw $1
